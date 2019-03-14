@@ -8,8 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <LocalAuthentication/LAError.h>
 
-static NSString * const TDMD5Salt = @"PFdZ48fPszfEG0E2"; //服务器端约定的盐(随机数)
-static NSString * const TDMD5Confusion = @"75cb0e64";  //混淆md5生成的字符串
+
 static NSInteger const  TDTouchIdNotSopport = -1 ;  //设备不支持touchid
 static NSString * const TDKeyChainService = @"SampleService";  //服务标志
 
@@ -27,20 +26,18 @@ static NSString * const TDKeyChainService = @"SampleService";  //服务标志
  计算字符串加盐后的md5值
 
  @param str 待加密字符串
- @param salt 与服务器约定的盐值
  @return 加盐加密的md5值
  */
-+(NSString *)encrypMD5String:(NSString *)str withSalt:(NSString *)salt;
++(NSString *)encrypMD5StringwithSalt:(NSString *)str;
 
 
 /**
  计算字符串md5值,加入随机信息混淆
 
  @param str 待加密字符串
- @param confusion 与服务器约定的随机值
  @return 混淆后的md5值
  */
-+(NSString *)encrypMD5String:(NSString *)str withConfusion:(NSString *)confusion;
++(NSString *)encrypMD5StringwithConfusion:(NSString *)str;
 
 
 /**

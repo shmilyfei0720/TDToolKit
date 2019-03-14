@@ -7,12 +7,18 @@
 //
 
 #import "TDAppDelegate.h"
+#import "TDViewController.h"
 
 @implementation TDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    TDViewController *tdVC = [[TDViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tdVC];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

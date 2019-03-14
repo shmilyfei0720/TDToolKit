@@ -10,6 +10,10 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <LocalAuthentication/LocalAuthentication.h>
 
+static NSInteger const TDMD5ConfusionIndex = 10; ////与服务器端预定的插入位置
+static NSString * const TDMD5Salt = @"PFdZ48fPszfEG0E2"; //与服务器端约定的盐(随机数)
+static NSString * const TDMD5Confusion = @"75cb0e64";  //与服务器端预定的混淆md5生成的字符串
+
 @implementation TDSecurity
 
 +(NSString *)encrypMD5String:(NSString *)str {
@@ -28,15 +32,16 @@
     return md5Str;
 }
 
-+(NSString *)encrypMD5String:(NSString *)str withSalt:(NSString *)salt {
++(NSString *)encrypMD5StringwithSalt:(NSString *)str{
     if (!str) return nil;
-    return [self encrypMD5String:[str stringByAppendingString:salt]];
+    return [self encrypMD5String:[str stringByAppendingString:TDMD5Salt]];
 }
 
-+(NSString *)encrypMD5String:(NSString *)str withConfusion:(NSString *)confusion {
++(NSString *)encrypMD5StringwithConfusion:(NSString *)str{
     if (!str) return nil;
     NSString *md5 = [self encrypMD5String:str];
-    return [[md5 lowercaseString] stringByAppendingString:confusion];
+    NSString *reStr = [NSString stringWithFormat:@"%@%@%@",[md5 substringToIndex:TDMD5ConfusionIndex],TDMD5Confusion,[md5 substringFromIndex:TDMD5ConfusionIndex]];
+    return reStr;
 }
 
 +(void)evaluateTouchIDWithReson:(NSString *)reason fallbackTitle:(NSString *)title Success:(void (^)(void))suc fail:(void (^)(NSInteger))fail{
