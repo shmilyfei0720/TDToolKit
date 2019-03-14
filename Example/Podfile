@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'TDToolKit_Example' do
+  pod 'TDToolKit', :path => '../'
+
+  target 'TDToolKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
