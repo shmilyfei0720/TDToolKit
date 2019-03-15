@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   
   #子工具 TDSecurity
   s.subspec 'TDSecurity' do |tdsec|
-      tdsec.source_files = 'Classes/TDSecurity'
+      tdsec.source_files = 'TDToolKit/Classes/TDSecurity/**/*'
   end
   
 end
