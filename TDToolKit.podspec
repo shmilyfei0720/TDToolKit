@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TDToolKit'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = '天地工具集.'
 
 # This description is used to generate tags and improve search results.
@@ -38,11 +38,12 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
   
   #子工具 TDSecurity
   s.subspec 'TDSecurity' do |tdsec|
       tdsec.source_files = 'TDToolKit/Classes/TDSecurity/**/*'
   end
+  
+  s.dependency "Masonry"
   
 end
